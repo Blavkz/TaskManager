@@ -8,7 +8,7 @@
 <table class="table table-striped table-hover border-danger">
     <thead>
         <tr>
-            <th>No</th>
+            <th></th>
             <th>Task</th>
             <th>Time</th>
         </tr>
@@ -17,7 +17,7 @@
     <!-- TODO: Loop through the database entries to display them in this table -->
         {% for task in tasks %}
             <tr>
-                <td>{{ loop.index }}</td>
+                <td>&#x25cf;</td>
                 <td>{{ task.task }}</td>
                 <td>{{ task.time }}</td>
             </tr>

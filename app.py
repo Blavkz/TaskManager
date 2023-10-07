@@ -36,15 +36,17 @@ def login_required(f):
 
     return decorated_function
 
-
+def get_name():
+    id = session["user_id"]
+    user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
+    name = user["username"]
+    return name
 
 
 @app.route("/")
 @login_required
 def index():
-    id = session["user_id"]
-    user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
-    name = user["username"]
+    name = get_name()
     time = datetime.datetime.now()
     format = '%Y-%m-%d %H:%M:%S'
     tasks = db.execute("SELECT * FROM ? WHERE status='TODO'",name)
@@ -146,9 +148,7 @@ def add():
             flash("No Task Inputed")
             return redirect("/")
         
-        id = session["user_id"]
-        user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
-        name = user["username"]
+        name = get_name()
         time = datetime.datetime.now()
         db.execute("INSERT INTO ? (task,status,time) VALUES (?,?,?)",name,task,"TODO",time)
         return redirect("/")
@@ -161,9 +161,7 @@ def action():
     if request.method == "GET":
         return redirect("/")
     else:
-        id = session["user_id"]
-        user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
-        name = user["username"]
+        name = get_name()
     
         page_id = request.form.getlist("tasks")
         if not page_id:
@@ -185,9 +183,7 @@ def action():
 @app.route("/completed",methods=["GET","POST"])
 @login_required
 def completed():
-    id = session["user_id"]
-    user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
-    name = user["username"]
+    name = get_name()
     time = datetime.datetime.now()
 
     tasks = db.execute("SELECT * FROM ? WHERE status='COMPLETED'",name)
@@ -209,9 +205,7 @@ def completed():
 @app.route("/trash",methods=["GET","POST"])
 @login_required
 def trash():
-    id = session["user_id"]
-    user = db.execute("SELECT * FROM users WHERE id = ?",id)[0]
-    name = user["username"]
+    name = get_name()
     time = datetime.datetime.now()
 
     tasks = db.execute("SELECT * FROM ? WHERE status='TRASH'",name)
