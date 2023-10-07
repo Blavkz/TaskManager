@@ -11,29 +11,31 @@
         </div>
       </div>
   </form>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Task</th>
-            <th>Time</th>
-            <th>Check</th>
-        </tr>
-    </thead>
-    <tbody>
-    <!-- TODO: Loop through the database entries to display them in this table -->
-        {% for task in tasks %}
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover border-success">
+        <thead>
             <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ task.task }}</td>
-                <td>{{ task.ttime }}</td>
-                <td>
-                    <input type="checkbox" name="tasks" value={{task.task_id}} form="takeaction">
-                </td>
+                <th>No</th>
+                <th>Task</th>
+                <th>Elapsed Time</th>
+                <th>Check</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ task.task }}</td>
+                    <td>{{ task.ttime }}</td>
+                    <td>
+                        <input type="checkbox" name="tasks" value={{task.task_id}} form="takeaction">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 <form action="/action" method="post" id = "takeaction" >
           <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name = "action" value = "delete" style=" margin-left: 10px; float: right;">Delete Task</button>
 
