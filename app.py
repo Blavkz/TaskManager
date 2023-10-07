@@ -49,7 +49,7 @@ def index():
     name = get_name()
     time = datetime.datetime.now()
     format = '%Y-%m-%d %H:%M:%S'
-    tasks = db.execute("SELECT * FROM ? WHERE status='TODO'",name)
+    tasks = db.execute("SELECT * FROM ? WHERE status='TODO' GROUP BY task",name)
     for a in range(len(tasks)):
         ctime = datetime.datetime.strptime(tasks[a]["time"],format)
         ctime = time - ctime
@@ -188,7 +188,7 @@ def completed():
     time = datetime.datetime.now()
     time = time.strftime('%m-%d-%Y')
 
-    tasks = db.execute("SELECT * FROM ? WHERE status='COMPLETED'",name)
+    tasks = db.execute("SELECT * FROM ? WHERE status='COMPLETED' GROUP BY task",name)
     if request.method == "GET":
         return render_template("completed.html",tasks=tasks)
     else:
@@ -211,7 +211,7 @@ def trash():
     time = datetime.datetime.now()
     time = time.strftime('%m-%d-%Y')
 
-    tasks = db.execute("SELECT * FROM ? WHERE status='TRASH'",name)
+    tasks = db.execute("SELECT * FROM ? WHERE status='TRASH' GROUP BY task",name)
     if request.method == "GET":
         return render_template("trash.html",tasks=tasks)
     else:
