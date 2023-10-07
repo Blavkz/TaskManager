@@ -27,3 +27,5 @@ This project is a web-based task manager application built using Python, Flask, 
 
 
 Feel free to explore the code files for more details on the implementation. We hope you find this task manager helpful in staying organized and managing your tasks effectively!
+
+Credit: Base webpage gotten from https://www.w3schools.com/. Stlyed with bootstrap https://getbootstrap.com/
