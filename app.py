@@ -113,8 +113,8 @@ def register():
         for a in range(len(names)):
             if name == names[a]["username"]:
                 flash("Username Already Chosen")
-            return render_template("register.html")
-
+                return render_template("register.html")
+            
         db.execute(
             "INSERT INTO users (username,hash) VALUES (?,?)",
             name,

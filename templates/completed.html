@@ -18,7 +18,7 @@
         {% for task in tasks %}
             <tr onclick=" return myFunction('{{task.task_id}}')">
                 <td>&#x25cf;</td>
-                <td>{{ task.task }}</td>
+                <td style="text-align: left;">{{ task.task }}</td>
                 <td>{{ task.time }}</td>
                 <td>
                     <input type="checkbox" name="tasks" value={{task.task_id}} 

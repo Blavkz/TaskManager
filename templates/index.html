@@ -26,7 +26,7 @@
             {% for task in tasks %}
                 <tr onclick=" return myFunction2('{{task.task_id}}')">
                     <td>&#x25cf;</td>
-                    <td>{{ task.task }}</td>
+                    <td style="text-align: left;">{{ task.task }}</td>
                     <td>{{ task.ttime }} day{% if task.ttime > 1 %}s{% endif %}
                     </td>
                     <td>
