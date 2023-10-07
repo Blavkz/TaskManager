@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Task Manager</title>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
@@ -58,6 +57,12 @@
           class="fa fa-remove w3-hide-large w3-button w3-display-topright"
         ></i>
         <a href="/" style="text-decoration: none; color: black;"><h3 class="w3-wide"><b>Task Manager</b></h3></a>
+
+        {% if session["user_id"] %}
+        <div class="w3-padding-2 w3-large w3-text-grey" style="font-weight: bold">
+          <h4>Welcome, {{ session["user_name"] }}</h4>
+        </div>
+        {% endif %}
       </div>
  
       {% if session["user_id"] %}
