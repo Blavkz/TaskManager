@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
     {% block title %}
-        Trash
+        Bin
     {% endblock %}
 {% block body %}
 
@@ -24,7 +24,7 @@
     </tbody>
 </table>
 <form action="/trash" method="post" id = "takeaction" >
-          <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name = "action" value = "delete" style=" margin-left: 10px; float: right;">Delete Task</button>
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name = "action" value = "delete" style=" margin-left: 10px; float: right;">Delete Permanently</button>
 </form>
 
 {% endblock %}

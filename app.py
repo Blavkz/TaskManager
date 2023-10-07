@@ -217,4 +217,6 @@ def trash():
     if request.method == "GET":
         return render_template("trash.html",tasks=tasks)
     else:
+        if request.form['action'] == "delete":
+            db.execute("DELETE FROM ? WHERE status = ?",name,"TRASH")
         return redirect("/trash")
