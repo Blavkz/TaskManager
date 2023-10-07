@@ -53,7 +53,7 @@ def index():
     for a in range(len(tasks)):
         ctime = datetime.datetime.strptime(tasks[a]["time"],format)
         ctime = time - ctime
-        tasks[a]["ttime"] = datetime.timedelta(seconds=int(ctime.total_seconds()))
+        tasks[a]["ttime"] = int(ctime.total_seconds()//86400)
     return render_template("index.html",tasks=tasks)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -169,6 +169,7 @@ def action():
             return redirect("/")
         
         time = datetime.datetime.now()
+        time = time.strftime('%m-%d-%Y')
         if request.form['action'] == "delete":
             for a in page_id:
                 db.execute("UPDATE ? SET status = ?, time = ? WHERE task_id = ? ",name,"TRASH",time, a)
@@ -185,6 +186,7 @@ def action():
 def completed():
     name = get_name()
     time = datetime.datetime.now()
+    time = time.strftime('%m-%d-%Y')
 
     tasks = db.execute("SELECT * FROM ? WHERE status='COMPLETED'",name)
     if request.method == "GET":
@@ -207,6 +209,7 @@ def completed():
 def trash():
     name = get_name()
     time = datetime.datetime.now()
+    time = time.strftime('%m-%d-%Y')
 
     tasks = db.execute("SELECT * FROM ? WHERE status='TRASH'",name)
     if request.method == "GET":

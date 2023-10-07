@@ -16,14 +16,26 @@
     <tbody>
     <!-- TODO: Loop through the database entries to display them in this table -->
         {% for task in tasks %}
-            <tr>
+            <tr onclick=" return myFunction('{{task.task_id}}')">
                 <td>&#x25cf;</td>
                 <td>{{ task.task }}</td>
                 <td>{{ task.time }}</td>
                 <td>
-                    <input type="checkbox" name="tasks" value={{task.task_id}} form="takeaction">
+                    <input type="checkbox" name="tasks" value={{task.task_id}} 
+                    id = {{task.task_id}} form="takeaction">
                 </td>
             </tr>
+            <script>
+                function myFunction(e) {
+                    a = document.getElementById(e);
+                    if (a.checked){
+                        a.checked = false;
+                    }else{
+                        a.checked = true;
+                    }
+                   
+                }
+            </script>
         {% endfor %}
     </tbody>
 </table>
