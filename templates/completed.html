@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+ {% block title %}
+  Completed Task 
+  {% endblock %}
+  {% block body %}
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Task</th>
+            <th>Time</th>
+            <th>Check</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- TODO: Loop through the database entries to display them in this table -->
+        {% for task in tasks %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ task.task }}</td>
+                <td>{{ task.time }}</td>
+                <td>
+                    <input type="checkbox" name="tasks" value={{task.task_id}} form="takeaction">
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="/completed" method="post" id = "takeaction" >
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name = "action" value = "delete" style=" margin-left: 10px; float: right;">Delete Task</button>
+</form>
+
+{% endblock %}
