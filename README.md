@@ -4,6 +4,7 @@
 #### Description:
 This project is a web-based task manager application built using Python, Flask, SQLite, Jinja, HTML, and CSS. This application aims to provide users with a convenient way to manage their tasks, helping them stay organized and productive.
 
+
 ## Features:
 - **User Authentication:** Users can create an account and log in to access their personalized to-do lists. This feature ensures that each user's tasks are kept private and secure.
 
